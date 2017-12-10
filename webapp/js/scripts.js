@@ -16,6 +16,19 @@ function addAnswer(e) {
   });
 }
 
+function deleteAnswer(event, answerId){
+  $.ajax({
+      url : '/api/qna/deleteAnswer?answerId=' + answerId,
+      method : 'GET',
+      success : function(){
+        $('#article-' + answerId).remove();
+      },
+      error : function(){
+        alert('답변 삭제 실패');
+      }
+  });
+}
+
 function onSuccess(json, status){
   var answer = json.answer;
   var answerTemplate = $("#answerTemplate").html();
